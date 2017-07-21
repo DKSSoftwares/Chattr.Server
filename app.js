@@ -32,7 +32,7 @@ io.on("connection", function(client) {
 });
 
 if (module === require.main) {
-    const server = app.listen(65080, () => {
+    const server = app.listen(process.env.PORT || 8081, () => {
         const port = server.address().port;
         console.log(`Aplicativo ouvindo na porta ${port}`);
     });
