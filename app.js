@@ -1,8 +1,8 @@
 'use strict';
 
 const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io').listen(http);
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
 var clients = {};
 
 app.get('/', (req, res) => {
@@ -30,15 +30,6 @@ io.on("connection", function(client) {
         delete clients[client.id];
     });
 });
-
-if (module === require.main) {
-    const server = app.listen(process.env.PORT || 8081, () => {
-        const port = server.address().port;
-        console.log(`Aplicativo ouvindo na porta ${port}`);
-    });
-}
-
-module.exports = app;
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
