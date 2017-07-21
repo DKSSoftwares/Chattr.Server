@@ -4,6 +4,7 @@
     "description": "Chat application using Socket.IO for comunication.",
     "main": "app.js",
     "scripts": {
+        "preinstall": "git pull",
         "install": "npm install",
         "start": "node app.js"
     },
