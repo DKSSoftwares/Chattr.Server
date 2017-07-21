@@ -30,8 +30,8 @@ io.on("connection", function(client) {
     });
 });
 
-http.listen(3000, function() {
-    console.log('Ouvindo a porta 3000');
+http.listen(8080, function() {
+    console.log('Ouvindo a porta 8080');
 });
 
 function getRandomColor() {
