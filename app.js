@@ -6,7 +6,7 @@ const io = require('socket.io').listen(server);
 var clients = {};
 
 app.get('/', (req, res) => {
-    res.status(200).send('O servidor está inicializado com sucesso!');
+    res.status(200).send('O servidor está inicializado com sucesso! Porta ' + app.get('port'));
 });
 
 io.on("connection", function(client) {
