@@ -3,7 +3,7 @@
 const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
-http.listen(8080, "127.0.0.1");
+server.listen(8080, "127.0.0.1");
 var clients = {};
 
 app.get('/', (req, res) => {
