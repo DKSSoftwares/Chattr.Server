@@ -1,6 +1,7 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+http.listen(65080);
 
 var clients = {};
 
@@ -28,10 +29,6 @@ io.on("connection", function(client) {
         io.emit("update", clients[client.id] + " saiu do bate-papo.", clients[client.color]);
         delete clients[client.id];
     });
-});
-
-http.listen(65080, function() {
-    console.log('Ouvindo a porta 65080');
 });
 
 function getRandomColor() {
