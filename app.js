@@ -1,12 +1,12 @@
+'use strict';
+
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-http.listen(65080);
-
 var clients = {};
 
-app.get('/', function(req, res) {
-    res.send('O servidor está inicializado');
+app.get('/', (req, res) => {
+    res.status(200).send('O servidor está inicializado com sucesso!');
 });
 
 io.on("connection", function(client) {
@@ -30,6 +30,15 @@ io.on("connection", function(client) {
         delete clients[client.id];
     });
 });
+
+if (module === require.main) {
+    const server = app.listen(65080, () => {
+        const port = server.address().port;
+        console.log(`Aplicativo ouvindo na porta ${port}`);
+    });
+}
+
+module.exports = app;
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';

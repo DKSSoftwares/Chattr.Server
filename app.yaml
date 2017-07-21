@@ -1,0 +1,13 @@
+# [START app_yaml]
+runtime: nodejs
+vm: true
+
+# [START network]
+# This ensures clients will be able to connect via websockets to any instance of
+# this app using websockets
+network:
+  forwarded_ports:
+  - 65080
+  instance_tag: websocket
+# [END network]
+# [END app_yaml]
