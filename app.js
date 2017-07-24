@@ -1,15 +1,7 @@
 'use strict';
 
 const app = require('express')();
-if (module === require.main) {
-    // [START server]
-    // Start the server
-    const server = app.listen(process.env.PORT || 8081, () => {
-        const port = server.address().port;
-        console.log(`App listening on port ${port}`);
-    });
-    // [END server]
-}
+const server;
 
 module.exports = app;
 
@@ -49,4 +41,11 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+if (module === require.main) {
+    server = app.listen(process.env.PORT || 8081, () => {
+        const port = server.address().port;
+        console.log(`App listening on port ${port}`);
+    });
 }
