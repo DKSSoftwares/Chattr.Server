@@ -5,7 +5,7 @@ const app = express();
 var clients = {};
 
 app.get('/', (req, res) => {
-    res.status(200).send('O servidor está inicializado com sucesso! Porta ' + app.get('port'));
+    res.status(200).send('O servidor está inicializado com sucesso! Porta ' + port);
 });
 
 const server = app.listen(process.env.PORT || 8080, () => {
