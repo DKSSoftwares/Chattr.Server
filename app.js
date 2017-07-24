@@ -2,18 +2,12 @@
 
 const express = require('express');
 const app = express();
-var clients = {};
-
-app.get('/', (req, res) => {
-    res.status(200).send('O servidor está inicializado com sucesso! Porta ' + port);
-});
-
 const server = app.listen(process.env.PORT || 8080, () => {
     const port = server.address().port;
     console.log(`App listening on port ${port}`);
 });
-
 const io = require('socket.io').listen(server);
+var clients = {};
 
 io.on("connection", function(client) {
     client.on("join", function(name) {
@@ -35,6 +29,10 @@ io.on("connection", function(client) {
         io.emit("update", clients[client.id] + " saiu do bate-papo.", clients[client.color]);
         delete clients[client.id];
     });
+});
+
+app.get('/', (req, res) => {
+    res.status(200).send('O servidor está inicializado com sucesso! Porta ' + port);
 });
 
 function getRandomColor() {
