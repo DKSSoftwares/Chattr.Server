@@ -1,12 +1,19 @@
 'use strict';
 
 const app = require('express')();
-const server = app.listen(process.env.PORT || 8080, () => {
-    const port = server.address().port;
-    console.log(`App listening on port ${port}`);
-});
+if (module === require.main) {
+    // [START server]
+    // Start the server
+    const server = app.listen(process.env.PORT || 8081, () => {
+        const port = server.address().port;
+        console.log(`App listening on port ${port}`);
+    });
+    // [END server]
+}
+
+module.exports = app;
+
 const io = require('socket.io').listen(server);
-server.listen(8080, "127.0.0.1");
 var clients = {};
 
 app.get('/', (req, res) => {
