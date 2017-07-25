@@ -1,5 +1,4 @@
-'use strict';
-
+require('@risingstack/trace');
 const express = require('express');
 const app = express();
 const server = app.listen(process.env.PORT || 8080, () => {
@@ -10,8 +9,6 @@ const server = app.listen(process.env.PORT || 8080, () => {
         res.status(200).send('O servidor está inicializado com sucesso! Porta ' + port);
     });
 });
-
-module.exports = app;
 
 const io = require('socket.io').listen(server);
 
